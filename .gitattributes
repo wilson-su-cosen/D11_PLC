@@ -1,5 +1,2 @@
-D11[[:space:]]PLC_0901_READ.gx3 filter=lfs diff=lfs merge=lfs -text
-<<<<<<< HEAD
-D11_PLC_READ&patch.gx3 filter=lfs diff=lfs merge=lfs -text
-=======
->>>>>>> dd2e8f13acd52fa5ba001cb64b69fea8c10c957c
+*.gx3 filter=lfs diff=lfs merge=lfs -text
+*.mtw filter=lfs diff=lfs merge=lfs -text
