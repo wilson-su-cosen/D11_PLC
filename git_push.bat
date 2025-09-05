@@ -41,8 +41,8 @@ if not "%update_note%"=="" (
 REM 加入當前目錄的檔案（會自動忽略 .gitignore 中的 OLD 目錄）
 git add .
 
-REM 提交並推送（commit 訊息加入時間戳記）
-git commit -m "[%HH%:%Min%] %update_note%"
+REM 提交並推送（commit 訊息包含完整日期和時間）
+git commit -m "[%YYYY%/%MM%/%DD% %HH%:%Min%] 更新 %update_note%"
 git push
 
 :end
