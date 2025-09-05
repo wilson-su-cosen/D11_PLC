@@ -37,16 +37,19 @@ git log --oneline
 git checkout <commit-hash>
 ```
 
-   - **實例解釋**：假設 `git log --oneline` 顯示以下內容：
-     ```
-     7f74fd3 修復 PLC 設定問題
-     a1b2c3d 新增功能 A
-     ```
-     如果你想切換到 `7f74fd3`，請執行：
-     ```bash
-     git checkout 7f74fd3
-     ```
-     注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
+- **實例解釋**：假設 `git log --oneline` 顯示以下內容：
+
+  ```
+  7f74fd3 修復 PLC 設定問題
+  a1b2c3d 新增功能 A
+  ```
+
+  如果你想切換到 `7f74fd3`，請執行：
+  ```bash
+  git checkout 7f74fd3
+  ```
+
+  注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
 
 3. 回到最新版本：
 
@@ -74,16 +77,19 @@ git show <commit-hash>:"D11_PLC_0901_READ.gx3"
 git show <commit-hash>:"D11_PLC_0901_READ.gx3" > "D11_PLC_0901_READ_old.gx3"
 ```
 
-   - **實例解釋**：假設 `git log --oneline -- "D11_PLC_0901_READ.gx3"` 顯示以下內容：
-     ```
-     7f74fd3 修復 PLC 設定問題
-     a1b2c3d 新增功能 A
-     ```
-     如果你想檢出 `7f74fd3` 的版本，並存為另一個檔案，請執行：
-     ```bash
-     git show 7f74fd3:"D11_PLC_0901_READ.gx3" > "D11_PLC_0901_READ_old.gx3"
-     ```
-     注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
+- **實例解釋**：假設 `git log --oneline -- "D11_PLC_0901_READ.gx3"` 顯示以下內容：
+
+  ```
+  7f74fd3 修復 PLC 設定問題
+  a1b2c3d 新增功能 A
+  ```
+
+  如果你想檢出 `7f74fd3` 的版本，並存為另一個檔案，請執行：
+  ```bash
+  git show 7f74fd3:"D11_PLC_0901_READ.gx3" > "D11_PLC_0901_READ_old.gx3"
+  ```
+
+  注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
 
 方式二：直接覆蓋恢復
 
@@ -96,16 +102,19 @@ git add "D11_PLC_0901_READ.gx3"
 git commit -m "[YYYY/MM/DD] 恢復 D11_PLC_0901_READ.gx3 到版本 <commit-hash>"
 ```
 
-   - **實例解釋**：假設你想直接恢復 `7f74fd3` 的版本，請執行：
-     ```bash
-     git checkout 7f74fd3 -- "D11_PLC_0901_READ.gx3"
-     ```
-     然後提交變更：
-     ```bash
-     git add "D11_PLC_0901_READ.gx3"
-     git commit -m "[2025/09/05] 恢復 D11_PLC_0901_READ.gx3 到版本 7f74fd3"
-     ```
-     注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
+- **實例解釋**：假設你想直接恢復 `7f74fd3` 的版本，請執行：
+
+  ```bash
+  git checkout 7f74fd3 -- "D11_PLC_0901_READ.gx3"
+  ```
+
+  然後提交變更：
+  ```bash
+  git add "D11_PLC_0901_READ.gx3"
+  git commit -m "[2025/09/05] 恢復 D11_PLC_0901_READ.gx3 到版本 7f74fd3"
+  ```
+
+  注意：請將 `<commit-hash>` 替換為實際的 commit ID，並刪除尖括號 `<>`。
 
 ### 注意：`git checkout <commit-hash>` 的影響
 
@@ -114,19 +123,23 @@ git commit -m "[YYYY/MM/DD] 恢復 D11_PLC_0901_READ.gx3 到版本 <commit-hash>
 #### 如何避免影響其他檔案？
 
 如果你只想恢復特定檔案，請務必指定檔名，例如：
+
 ```bash
 git checkout <commit-hash> -- "D11_PLC_0901_READ.gx3"
 ```
+
 這樣只會恢復 `D11_PLC_0901_READ.gx3` 到指定版本，而不影響其他檔案。
 
 #### 如果不小心恢復了整個目錄怎麼辦？
 
 1. 回到最新版本：
+
 ```bash
 git checkout master
 ```
 
 2. 如果有未提交的變更，還原工作目錄：
+
 ```bash
 git reset --hard
 ```
@@ -135,7 +148,7 @@ git reset --hard
 
 ## Git LFS 操作
 
-由於專案包含大型二進位檔案（.gx3），使用 Git LFS 管理：
+由於專案包含大型二進位檔案（.gx3、），使用 Git LFS 管理：
 
 ```bash
 # 追蹤 .gx3 檔案
@@ -144,6 +157,65 @@ git lfs track "*.gx3"
 # 確認 LFS 狀態
 git lfs ls-files
 ```
+
+### 將檔案加入 Git LFS 管理
+
+Git LFS（Large File Storage）是一個擴展，用於管理大型檔案（如二進位檔案），以避免儲存庫膨脹。
+
+#### 什麼是二進位檔案？
+
+二進位檔案是指非純文字檔案，例如：
+
+- 圖片檔案（如 .png, .jpg）
+- 視頻檔案（如 .mp4, .avi）
+- 執行檔（如 .exe, .dll）
+- 資料檔案（如 .mtw, .gx3）
+
+這些檔案通常無法用 Git 的文字差異工具進行有效比較，因此適合使用 Git LFS 來管理。
+
+#### 將檔案類型加入 LFS 的步驟
+
+1. **追蹤檔案類型**
+   使用 `git lfs track` 指令來追蹤特定類型的檔案。例如，將 `.mtw` 檔案加入 LFS 管理：
+
+   ```bash
+   git lfs track "*.mtw"
+   ```
+2. **將 `.gitattributes` 加入版本控制**
+   Git LFS 會在專案根目錄生成或更新 `.gitattributes` 檔案，記錄追蹤的檔案類型。將其加入版本控制：
+
+   ```bash
+   git add .gitattributes
+   ```
+3. **將檔案加入版本控制**
+   將現有的 `.mtw` 檔案加入版本控制：
+
+   ```bash
+   git add *.mtw
+   ```
+4. **提交變更**
+   提交追蹤設定和檔案：
+
+   ```bash
+   git commit -m "Add .mtw files to LFS tracking"
+   ```
+5. **推送到遠端儲存庫**
+   將變更推送到遠端儲存庫：
+
+   ```bash
+   git push
+   ```
+
+#### 注意事項
+
+- 如果檔案已經被 Git 追蹤，需先移除其快取，然後重新加入：
+  ```bash
+  git rm --cached *.mtw
+  git add *.mtw
+  git commit -m "Move .mtw files to LFS"
+  git push
+  ```
+- 只有大型二進位檔案需要使用 Git LFS，普通的文字檔案（如 .txt, .md, .json）不需要。
 
 ## 其他常用指令
 
