@@ -9,9 +9,6 @@ REM 詢問是否繼續
 set /p confirm=確定要上傳嗎？(Y/N): 
 if /i "%confirm%" neq "Y" goto :end
 
-REM 加入當前目錄的檔案（會自動忽略 .gitignore 中的 OLD 目錄）
-git add .
-
 REM 設定時間戳記
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set datetime=%%I
 set YYYY=%datetime:~0,4%
@@ -20,8 +17,19 @@ set DD=%datetime:~6,2%
 set HH=%datetime:~8,2%
 set Min=%datetime:~10,2%
 
+REM 詢問更新說明
+set /p update_note=請輸入更新說明（直接按 Enter 跳過）: 
+if not "%update_note%"=="" (
+    echo ## %YYYY%/%MM%/%DD% %HH%:%Min%>> UPDATE.md
+    echo - %update_note%>> UPDATE.md
+    echo.>> UPDATE.md
+)
+
+REM 加入當前目錄的檔案（會自動忽略 .gitignore 中的 OLD 目錄）
+git add .
+
 REM 提交並推送
-git commit -m "Update files - %YYYY%/%MM%/%DD% %HH%:%Min%"
+git commit -m "Update files - %YYYY%/%MM%/%DD% %HH%:%Min% - %update_note%"
 git push
 
 :end
