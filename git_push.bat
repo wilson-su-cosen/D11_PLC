@@ -45,6 +45,9 @@ REM 提交並推送（commit 訊息包含完整日期和時間）
 git commit -m "[%YYYY%/%MM%/%DD% %HH%:%Min%] 更新 %update_note%"
 git push
 
+REM 開啟專案的 GitHub 網頁
+start https://github.com/wilson-su-cosen/D11_PLC
+
 :end
 if /i "%confirm%" neq "Y" (
     echo 已取消上傳
