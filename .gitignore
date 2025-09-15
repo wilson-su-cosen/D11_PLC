@@ -1,2 +1,4 @@
 # 忽略 OLD 目錄及其內容
 OLD/
+*.cxob
+*.debug
