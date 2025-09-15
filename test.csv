@@ -1,0 +1,7 @@
+﻿Version: 4
+Data Sampling,
+,Sample Mode,Time-based,1000 ms
+,,High Priority: Off
+,Read Address,R16ENCPU,D,System Tag: Off,User-defined Tag: Off,11910,IDX: null
+,Data Record
+,,32-bit BCD,32-bit BCD,Left of decimal Pt. 11,Right of decimal Pt. 0,Leading zero Off,R16ENCPU,D,System Tag: Off,User-defined Tag: Off,11910,IDX: null
