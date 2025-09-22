@@ -4,4 +4,4 @@ OLD/
 *.debug
 
 # 忽略備份檔案
-ELD11_HMI_ver1.1.cmtp.bak[1-3]
+*.cmtp.bak[1-3]
